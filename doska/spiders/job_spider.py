@@ -24,10 +24,10 @@ class JobUrlSpider(scrapy.Spider):
                 full_url = self.base_url + ''.join(job_url.split('?')[:1])
                 out.write(full_url+"\n")
 
+jobs = []
 
 class JobSpider(scrapy.Spider):
     name = "jobs"
-    jobs = []
 
     def start_requests(self):
         with open("job_urls.csv", "r") as f:
@@ -44,6 +44,6 @@ class JobSpider(scrapy.Spider):
             'contacts': {"phone number": response.xpath("//div[contains(@class, 'desc')]/text()")[1].get().strip()},
             'created_on': datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
         }
-        self.jobs.append(data)
+        jobs.append(data)
 
 
