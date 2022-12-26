@@ -1,5 +1,4 @@
 import scrapy
-import json
 import datetime
 
 
